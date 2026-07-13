@@ -1,0 +1,38 @@
+name: Release Silakka54
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version number for this release (e.g. v1.0.0)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build and release Silakka54 firmware
+    runs-on: ubuntu-latest
+    container: ghcr.io/qmk/qmk_cli@sha256:2dc05fc9f32efebd6b05c2b8676ee548358bc7e151e9dbf4dac6b6eed4513b07
+
+    steps:
+    - name: (actions) Checkout Vial repo
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Build firmware
+      run: |
+        git config --global --add safe.directory $(pwd)
+        ./compile_silakka54.sh
+
+    - name: Create release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ inputs.version }}
+        name: ${{ inputs.version }}
+        files: |
+          silakka54_arthurstomp_left.uf2
+          silakka54_arthurstomp_right.uf2
