@@ -28,10 +28,18 @@ Silakka54 is a RP2040 Zero based 54-key column staggered split keyboard. PCB use
 * Hardware Supported: Silakka54 PCB
 * Hardware Availability: https://github.com/Squalius-cephalus/silakka54
 
+## `arthurstomp` keymaps aditions
+
+- Sets the number of layers to 8;
+- Sets the number of macros to 40;
+- Light up the RGB led on the left side when in the 3 and 4 layers - my gaming and macros layers respectivelly.
+
 
 ## Compiling & Flashing for each specific side
 
 ### Helper scripts
+
+`compile_silakka54.sh` and `flash_silakka54.sh` performs the steps below.
 
 *Variables*
 

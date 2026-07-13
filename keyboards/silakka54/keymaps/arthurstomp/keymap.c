@@ -20,3 +20,43 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             KC_TRNS, KC_TRNS, KC_TRNS,           KC_TRNS,  KC_TRNS,  KC_TRNS
     )
 };
+
+// Define lighting layers for the internal LED (left half only)
+const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 1, 128, 180, 120} // Light the single LED (LED 0) dim cyan when layer 3 is active
+);
+
+const rgblight_segment_t PROGMEM my_layer4_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 1, 160, 180, 120} // Light the single LED (LED 0) dim azure when layer 4 is active
+);
+
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    my_layer3_layer, // Layer 0: layer 3 indicator
+    my_layer4_layer  // Layer 1: layer 4 indicator
+);
+
+void keyboard_post_init_user(void) {
+    if (is_keyboard_left()) {
+        rgblight_layers = my_rgb_layers;
+        rgblight_enable_noeeprom();
+        rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+        rgblight_sethsv_noeeprom(HSV_OFF); // base LED off; layers overlay on top
+    } else {
+        rgblight_disable_noeeprom();
+    }
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(0, false);
+    rgblight_set_layer_state(1, false);
+
+    switch (get_highest_layer(state)) {
+        case 3:
+            rgblight_set_layer_state(0, true);
+            break;
+        case 4:
+            rgblight_set_layer_state(1, true);
+            break;
+    }
+    return state;
+}

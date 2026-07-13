@@ -10,3 +10,9 @@
 #define DYNAMIC_KEYMAP_LAYER_COUNT 8
 #define DYNAMIC_KEYMAP_MACRO_COUNT 40          // number of macro slots
 #define DYNAMIC_KEYMAP_MACRO_BUFFER_SIZE 4800   // total bytes shared across ALL macros
+
+// RP2040 Zero internal WS2812 LED
+#define RGBLIGHT_LED_COUNT 1
+#define WS2812_DI_PIN GP16
+#define RGBLIGHT_LAYERS
+#define RGBLIGHT_LAYERS_RETAIN_STATE
