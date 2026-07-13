@@ -34,6 +34,7 @@ Silakka54 is a RP2040 Zero based 54-key column staggered split keyboard. PCB use
 - Sets the number of macros to 40;
 - Light up the RGB led on the left side when in the 3 and 4 layers - my gaming and macros layers respectivelly.
 
+> Shout out to [EloyEMC](https://github.com/EloyEMC/Multi-color-LED-indicator-for-Silakka54-with-RP2040-Zero) for the instructions on how to use the led in silakka54 keyboard!
 
 ## Compiling & Flashing for each specific side
 
@@ -45,7 +46,7 @@ Silakka54 is a RP2040 Zero based 54-key column staggered split keyboard. PCB use
 
 - keymap: arthurstomp
 
-## Left side
+### Left side
 
 Find the keyboard forlder for silakka54 in this repo - `keyboards/silakka54`.
 
@@ -59,7 +60,7 @@ Rename `silakka54_arthurstomp.uf2` to `silakka54_arthurstomp_left.uf2`
 
 Flash it using `qmk` - `qmk flash -kb silakka54 -km arthurstomp -bl uf2-split-left ./silakka54_arthurstomp_left.u2`. After executing this command you will need to connect to the left half in booloader mode - without the half connect, hold the boot button and connect the cable.
 
-## Right side
+### Right side
 
 Find the keyboard forlder for silakka54 in this repo - `keyboards/silakka54`
 
