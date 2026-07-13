@@ -28,7 +28,7 @@ Silakka54 is a RP2040 Zero based 54-key column staggered split keyboard. PCB use
 * Hardware Supported: Silakka54 PCB
 * Hardware Availability: https://github.com/Squalius-cephalus/silakka54
 
-## `arthurstomp` keymaps aditions
+## `arthurstomp` keymap aditions
 
 - Sets the number of layers to 8;
 - Sets the number of macros to 40;
@@ -38,13 +38,19 @@ Silakka54 is a RP2040 Zero based 54-key column staggered split keyboard. PCB use
 
 ## Compiling & Flashing for each specific side
 
-### Helper scripts
+`compile_silakka54.sh` does must of what is described below.
 
-`compile_silakka54.sh` and `flash_silakka54.sh` performs the steps below.
+After you execute the `compile_silakka54.sh` you can just drag-and-drop the the `uf2` files for their respective halves - prepare by opening 2 file manager windows, one in this repo another ready to open external storage devices.
 
-*Variables*
+To flash the firware with drag-and-drop you need to do the following procedure:
+- disconnect the half from the USB,
+- hold the BOOT button,
+- connect the usb to the half,
+- then release the BOOT button.
 
-- keymap: arthurstomp
+That sets the micro-controller in the half to turn on in boot mode, essencially it becomes a storage device in your file manager.
+
+Once the micro-controller appears in the file manager, copy the right `uf2` file into the device. That will trigger the flashing, the device will diappear and the half will be flashed with the new firmware.
 
 ### Left side
 
@@ -58,7 +64,9 @@ Compile using vial - `make silakka54:arthurstomp`
 
 Rename `silakka54_arthurstomp.uf2` to `silakka54_arthurstomp_left.uf2` 
 
-Flash it using `qmk` - `qmk flash -kb silakka54 -km arthurstomp -bl uf2-split-left ./silakka54_arthurstomp_left.u2`. After executing this command you will need to connect to the left half in booloader mode - without the half connect, hold the boot button and connect the cable.
+Now you can use your file manager to drag `silakka54_arthurstomp_left.uf2` into your left half of the keyboard. For that open 2 file manager windows, one in this repo another ready for opening a external device. Disconnect the left half, hold the BOOT button, then reconnect it and release the BOOT button - that sets the micro-controller to be in boot mode add appear in your file_explorer. 
+
+> Flashing through CLI: Flash it using `qmk` - `qmk flash -kb silakka54 -km arthurstomp -bl uf2-split-left ./silakka54_arthurstomp_left.u2`. After executing this command you will need to connect to the left half in booloader mode - without the half connect, hold the boot button and connect the cable.
 
 ### Right side
 
@@ -72,7 +80,9 @@ Compile using vial - `make silakka54:arthurstomp`
 
 Rename `silakka54_arthurstomp.uf2` to `silakka54_arthurstomp_right.uf2` 
 
-Flash it using `qmk` - `qmk flash -kb silakka54 -km arthurstomp -bl uf2-split-right ./silakka54_arthurstomp_right.u2`. After executing this command you will need to connect to the right half in booloader mode - without the half connect, hold the boot button and connect the cable.
+Now you can use your file manager to drag `silakka54_arthurstomp_right.uf2` into your right half of the keyboard. For that open 2 file manager windows, one in this repo another ready for opening a external device. Disconnect the right half, hold the BOOT button, then reconnect it and release the BOOT button - that sets the micro-controller to be in boot mode add appear in your file_explorer. 
+
+> Flashing through CLI: Flash it using `qmk` - `qmk flash -kb silakka54 -km arthurstomp -bl uf2-split-right ./silakka54_arthurstomp_right.u2`. After executing this command you will need to connect to the right half in booloader mode - without the half connect, hold the boot button and connect the cable.
 
 ## Supported Keyboards
 
